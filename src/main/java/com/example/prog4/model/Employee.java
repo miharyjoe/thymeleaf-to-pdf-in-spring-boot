@@ -23,6 +23,7 @@ public class Employee implements Serializable {
     private String firstName;
     private String lastName;
 
+
     private MultipartFile image;
     private String stringImage;
 
@@ -46,6 +47,6 @@ public class Employee implements Serializable {
     private List<Position> positions;
     private List<Phone> phones;
 
-    private Long salaireBrute;
+    private Double salaireBrute;
 
 }

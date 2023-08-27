@@ -1,6 +1,7 @@
 package com.example.prog4.controller.mapper;
 
 import com.example.prog4.model.Employee;
+import com.example.prog4.model.EmployeeAge;
 import com.example.prog4.model.exception.BadRequestException;
 import com.example.prog4.repository.PositionRepository;
 import com.example.prog4.repository.entity.Phone;
@@ -10,6 +11,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -98,5 +101,39 @@ public class EmployeeMapper {
                 .positions(employee.getPositions())
                 .salaireBrute(employee.getSalaireBrute())
                 .build();
+    }
+
+    public EmployeeAge toViewPdf(com.example.prog4.repository.entity.Employee employee) {
+        return EmployeeAge.builder()
+                .id(employee.getId())
+                .firstName(employee.getFirstName())
+                .lastName(employee.getLastName())
+                .address(employee.getAddress())
+                .cin(employee.getCin())
+                .cnaps(employee.getCnaps())
+                .registrationNumber(employee.getRegistrationNumber())
+                .childrenNumber(employee.getChildrenNumber())
+                // enums
+                .csp(employee.getCsp())
+                .sex(employee.getSex())
+                .stringImage(employee.getImage())
+                // emails
+                .professionalEmail(employee.getProfessionalEmail())
+                .personalEmail(employee.getPersonalEmail())
+                // dates
+                .birthDate(employee.getBirthDate())
+                .departureDate(employee.getDepartureDate())
+                .entranceDate(employee.getEntranceDate())
+                // lists
+                .phones(employee.getPhones().stream().map(phoneMapper::toView).toList())
+                .positions(employee.getPositions())
+                .salaireBrute(employee.getSalaireBrute())
+                .age(AgeCalcul(employee.getBirthDate()))
+                .build();
+    }
+    private int AgeCalcul(LocalDate birthdate){
+        LocalDate currentDate = LocalDate.now();
+        Period period = Period.between(birthdate, currentDate);
+        return period.getYears();
     }
 }
