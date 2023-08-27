@@ -34,7 +34,7 @@ create table if not exists "employee"
     image               text,
     professional_email  varchar not null unique,
     address             varchar not null,
-    salaire_brute    integer
+    salaire_brute    numeric
 );
 
 CREATE SEQUENCE if not exists employ_ref_sequence

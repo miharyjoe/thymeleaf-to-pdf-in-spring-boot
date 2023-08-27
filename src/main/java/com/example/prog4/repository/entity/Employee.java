@@ -72,5 +72,5 @@ public class Employee implements Serializable {
     @JoinColumn(name = "employee_id", referencedColumnName = "id")
     private List<Phone> phones;
 
-    private Long salaireBrute;
+    private Double salaireBrute;
 }
