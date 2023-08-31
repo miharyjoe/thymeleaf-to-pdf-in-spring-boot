@@ -125,8 +125,17 @@
                     <a th:href="'/employee/show/'+*{employee.id}">
                         <button class="btn btn-primary">show</button>
                     </a>
-                    <a th:href="'/employee/pdf/'+*{employee.id}">
-                        <button class="btn btn-success">Download Pdf</button>
+                    <a th:href="'/employee/pdf/' + *{employee.id} + '?ageCalculationOption=BIRTHDAY'">
+                        <button class="btn btn-success">Download PDF (Birthday)</button>
+                    </a>
+                    <!-- For YEAR_ONLY -->
+                    <a th:href="'/employee/pdf/' + *{employee.id} + '?ageCalculationOption=YEAR_ONLY'">
+                        <button class="btn btn-success">Download PDF (Year Only)</button>
+                    </a>
+
+                    <!-- For CUSTOM_DELAY (with a custom delay of 30 days) -->
+                    <a th:href="'/employee/pdf/' + *{employee.id} + '?ageCalculationOption=CUSTOM_DELAY&birthdayMinInterval=30'">
+                        <button class="btn btn-success">Download PDF (Custom Delay)</button>
                     </a>
                 </td>
             </tr>
